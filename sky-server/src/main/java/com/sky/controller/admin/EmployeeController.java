@@ -86,5 +86,12 @@ public class EmployeeController {
         return Result.success(page);
     }
 
+    @PostMapping("/status/{status}")
+    public Result reviseStatus(@PathVariable("status")Integer status,Long id){
+        employeeService.reviseStatus(id,status);
+
+        return Result.success();
+    }
+
 
 }

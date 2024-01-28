@@ -17,4 +17,6 @@ public interface EmployeeService {
     void insert(Employee employee);
 
     PageResult page(EmployeePageQueryDTO employeePageQueryDTO);
+
+    void reviseStatus(Long id, Integer status);
 }

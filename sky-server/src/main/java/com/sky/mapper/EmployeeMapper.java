@@ -2,10 +2,7 @@ package com.sky.mapper;
 
 import com.github.pagehelper.Page;
 import com.sky.entity.Employee;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -25,4 +22,7 @@ public interface EmployeeMapper {
     void insert(Employee employee);
 
     Page<Employee> queryForPageWithName(@Param("name") String name);
+
+    @Update("update employee SET status = #{status} where id = #{id}")
+    void reviseStatus(Long id, Integer status);
 }
