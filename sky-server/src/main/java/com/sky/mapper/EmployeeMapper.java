@@ -23,6 +23,8 @@ public interface EmployeeMapper {
 
     Page<Employee> queryForPageWithName(@Param("name") String name);
 
-    @Update("update employee SET status = #{status} where id = #{id}")
-    void reviseStatus(Long id, Integer status);
+//    @Update("update employee SET status = #{status} where id = #{id}")
+//    void reviseStatus(Long id, Integer status);
+
+    void reviseStatus(Employee employee);
 }
