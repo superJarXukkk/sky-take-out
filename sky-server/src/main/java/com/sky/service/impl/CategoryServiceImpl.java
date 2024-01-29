@@ -47,4 +47,15 @@ public class CategoryServiceImpl implements CategoryService {
 
         categoryMapper.insert(category);
     }
+
+    @Override
+    public void statusOnOrDown(Integer status, Long id) {
+        Category category = Category.builder().status(status).id(id).build();
+        update(category);
+    }
+
+    @Override
+    public void update(Category category) {
+        categoryMapper.update(category);
+    }
 }
