@@ -84,4 +84,11 @@ public class CategoryServiceImpl implements CategoryService {
 
         categoryMapper.delete(id);
     }
+
+    @Override
+    public List<Category> selectCategoryByType(Integer type) {
+        List<Category> list = categoryMapper.selectCategoryByType(type);
+
+        return list;
+    }
 }

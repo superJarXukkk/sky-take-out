@@ -13,6 +13,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Slf4j
 @Api("分类功能模块")
 @RestController
@@ -52,5 +54,11 @@ public class CategoryController {
     public Result delete(Long id){
         categoryService.delete(id);
         return Result.success();
+    }
+
+    @GetMapping("/list")
+    public Result<List<Category>> selectCategoryByType(Integer type){
+        List<Category> list = categoryService.selectCategoryByType(type);
+        return Result.success(list);
     }
 }
