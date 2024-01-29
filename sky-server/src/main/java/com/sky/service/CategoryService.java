@@ -14,4 +14,6 @@ public interface CategoryService {
 
     void statusOnOrDown(Integer status, Long id);
     void update(Category category);
+
+    void delete(Long id);
 }

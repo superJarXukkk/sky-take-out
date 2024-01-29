@@ -50,6 +50,7 @@ public class CategoryController {
 
     @DeleteMapping("")
     public Result delete(Long id){
+        categoryService.delete(id);
         return Result.success();
     }
 }
