@@ -69,11 +69,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     public void insert(Employee employee) {
 
         Long currentId = BaseContext.getCurrentId();
-        employee.setUpdateUser(currentId);
-        employee.setCreateUser(currentId);
 
-        employee.setUpdateTime(LocalDateTime.now());
-        employee.setCreateTime(LocalDateTime.now());
 
         employee.setPassword(DigestUtils.md5DigestAsHex(PasswordConstant.DEFAULT_PASSWORD.getBytes()));
         employee.setStatus(StatusConstant.ENABLE);
