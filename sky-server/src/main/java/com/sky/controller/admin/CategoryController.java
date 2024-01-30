@@ -61,4 +61,5 @@ public class CategoryController {
         List<Category> list = categoryService.selectCategoryByType(type);
         return Result.success(list);
     }
+
 }
