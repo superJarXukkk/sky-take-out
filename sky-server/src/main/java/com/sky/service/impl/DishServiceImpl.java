@@ -118,4 +118,12 @@ public class DishServiceImpl implements DishService {
 
 
     }
+
+    @Override
+    public List<Dish> getDishsByCategoryId(Long categoryId) {
+        List<Dish> dishByCategoryId = dishMapper.getDishByCategoryId(categoryId);
+        return dishByCategoryId;
+
+
+    }
 }
