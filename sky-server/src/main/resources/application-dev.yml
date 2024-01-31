@@ -8,6 +8,6 @@ sky:
     password: 123456
   alioss:
     endpoint: oss-cn-nanjing.aliyuncs.com
-    access-key-id: LTAI5tHqWbszib6LRbSeMh8p
-    access-key-secret: ZjLbsXsGXea72M6tz5X1XPQ3Jj4M0U
+    access-key-id: 
+    access-key-secret: 
     bucket-name: super-jar-xuke
