@@ -16,4 +16,4 @@ sky:
     port: 6379
     password: root
     database: 10
-spring: 1
+spring: 12
