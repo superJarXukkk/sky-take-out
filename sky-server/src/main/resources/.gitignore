@@ -7,3 +7,4 @@
 out
 gen
 application-dev.yml
+!/application-dev.yml
