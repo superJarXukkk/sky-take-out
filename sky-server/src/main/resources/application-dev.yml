@@ -11,3 +11,8 @@ sky:
     access-key-id: 
     access-key-secret: 
     bucket-name: super-jar-xuke
+  redis:
+    host: 192.168.137.129
+    port: 6379
+    password: root
+    database: 10
