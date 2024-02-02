@@ -24,4 +24,6 @@ public interface DishService {
     void deleteBatch(Long[] ids);
 
     List<Dish> getDishsByCategoryId(Long categoryId);
+
+    List<DishVO> listWithFlavor(Dish dish);
 }

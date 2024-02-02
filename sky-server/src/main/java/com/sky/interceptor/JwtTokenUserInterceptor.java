@@ -10,28 +10,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * jwt令牌校验的拦截器
- */
+
 @Component
 @Slf4j
-public class JwtTokenAdminInterceptor implements HandlerInterceptor {
+public class JwtTokenUserInterceptor implements HandlerInterceptor {
 
     @Autowired
     private JwtProperties jwtProperties;
-
-    /**
-     * 校验jwt
-     *
-     * @param request
-     * @param response
-     * @param handler
-     * @return
-     * @throws Exception
-     */
+    @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         //判断当前拦截到的是Controller的方法还是其他资源
         if (!(handler instanceof HandlerMethod)) {
@@ -40,19 +30,16 @@ public class JwtTokenAdminInterceptor implements HandlerInterceptor {
         }
 
         //1、从请求头中获取令牌
-        String token = request.getHeader(jwtProperties.getAdminTokenName());
         String userToken = request.getHeader(jwtProperties.getUserTokenName());
 
         //2、校验令牌
         try {
-            log.info("jwt校验:{}", token);
-            Claims claims = JwtUtil.parseJWT(jwtProperties.getAdminSecretKey(), token);
-            Long empId = Long.valueOf(claims.get(JwtClaimsConstant.EMP_ID).toString());
+            log.info("jwt校验:{}", userToken);
             Claims userClaims = JwtUtil.parseJWT(jwtProperties.getUserSecretKey(), userToken);
-            Integer userId = Integer.valueOf(claims.get(JwtClaimsConstant.USER_ID).toString());
-            log.info("当前员工id：", empId);
+            Integer userId = Integer.valueOf(userClaims.get(JwtClaimsConstant.USER_ID).toString());
+            log.info("当前用户id：", userId);
             log.info("当前用户id加入BaseContext");
-            BaseContext.setCurrentId(empId);
+            BaseContext.setCurrentId(((long) userId));
             //3、通过，放行
             return true;
         } catch (Exception ex) {
@@ -64,7 +51,6 @@ public class JwtTokenAdminInterceptor implements HandlerInterceptor {
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-        log.info("当前用户id退出BaseContext");
         BaseContext.removeCurrentId();
     }
 }
