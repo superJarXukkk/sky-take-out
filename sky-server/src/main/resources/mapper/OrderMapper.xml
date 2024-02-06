@@ -91,6 +91,9 @@
             <if test="userId != null and userId != 0">
                 and user_id = #{userId}
             </if>
+            <if test="createTime != null and createTime != 0">
+                and order_time &lt;= #{orderTime}
+            </if>
         </where>
     </select>
 
