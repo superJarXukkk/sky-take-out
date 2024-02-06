@@ -34,4 +34,7 @@ public interface OrderMapper {
     Page<OrderVO> getAllPreDetail(Orders orders);
 
     Integer countStatus(Integer toBeConfirmed);
+
+    @Select("select * from orders where status = #{status} and order_time < #{orderTime}")
+    List<Orders> getByStatusAndOrderTimeLT(Integer status, LocalDateTime orderTime);
 }
